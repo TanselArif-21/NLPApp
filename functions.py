@@ -35,7 +35,7 @@ def LDA(site, inurl1, inurl2, increment_string1, increment_string2, total_pages,
 	myTopicModel.ldaFromReviews()
 	myTopicModel.generate_wordcloud()
 	#myTopicModel.saveLDA(os.path.join(filePath,'templates/LDAhtmls',filename + '1' + '.html'))
-	myTopicModel.saveLDA('templates/LDAhtmls',filename + '1' + '.html')
+	myTopicModel.saveLDA(os.path.join(filePath,'templates/LDAhtmls',filename + '1' + '.html'))
 	myTopicModel.saveWordcloud(os.path.join(filePath,'static',filename + '2' + '.png'))
 
 	# # Return the predicted Sale Price
