@@ -8,23 +8,28 @@ import random
 # This line sets the app directory as the working directory
 app = Flask(__name__)
 
+
 # The home route
 @app.route('/', methods=['GET'])
 def home_page():
     # Show the index page
-    return render_template('index.html')
+    return redirect('/dosomething2')
 
-# A route to the test page that simply returns hello
-@app.route('/hello', methods=['GET'])
-def hello():
-    return 'Hello, World!'
-	
+
 # The dosomething route
-@app.route('/dosomething', methods=['GET'])
-def dosomething():
+@app.route('/showresult', methods=['GET'])
+def showresult():
+    filename = request.args.get('filename')
+    ldafile = filename + '1.html'
+    wordcloud = 'static/' + filename + '2.png'
+
+    if not os.path.exists('templates/LDAhtmls/' + ldafile):
+        return 'File is not ready yet!'
+
     # Show something
-    return str(return_something())
-	
+    return render_template('ShowResult.html', ldafile=ldafile, wordcloud=wordcloud)
+
+
 # The dosomething2 route
 @app.route('/dosomething2', methods=['GET', 'POST'])
 def dosomething2():
@@ -33,26 +38,41 @@ def dosomething2():
 
         url1 = request.form['url1']
         url2 = request.form['url2']
-        increment_string1 = '-or'
+        increment_string1 = request.form['increment_string1']
         increment_string2 = ''
         total_pages = request.form['total_pages']
-        increment = 10
+        increment = request.form['increment']
         site = request.form['site']
         filename = ''
-		
-        filename = LDA(site, url1, url2, increment_string1, increment_string2, total_pages, increment)
-		
-        # # Return the result
-        # #return 'The predicted Sale Price of this house is: ' + str(round(result, 2)) + '. \n <button><a href="/plot/' + filename + '">See Sales Price Distribution</a></button><p></p>'
-        #return '<p></p> <img src="static/' + filename + '2.png"><p></p><p></p> <a href="' + filePath + '/static/' + filename + '1.html">LDA Visualisation</a><p></p>'
-		
-        #return render_template(filename + '1.html')
-        ldafile = filename + '1.html'
-        wordcloud = 'static/' + filename + '2.png'
-        return render_template('ShowResult.html',ldafile=ldafile, wordcloud=wordcloud)
+        for i in range(4):
+            filename = filename + random.choice(string.ascii_letters)
+
+        return render_template('waiting.html', url1=url1, url2=url2, increment_string1=increment_string1,
+                               increment_string2=increment_string2, total_pages=total_pages, increment=increment,
+                               site=site, filename=filename)
     else:
         # Show the form page
         return render_template("dosomethingform.html")
+
+
+# The process route
+@app.route('/process', methods=['POST'])
+def process():
+    url1 = request.form['url1']
+    url2 = request.form['url2']
+    increment_string1 = request.form['increment_string1']
+    increment_string2 = request.form['increment_string2']
+    total_pages = int(request.form['total_pages'])
+    increment = int(request.form['increment'])
+    site = request.form['site']
+    filename = request.form['filename']
+
+    if os.path.exists('templates/LDAhtmls/' + filename + '1.html'):
+        return 'duplicate'
+
+    LDA(site, url1, url2, increment_string1, increment_string2, total_pages, increment, filename)
+
+    return 'done'
 
 
 if __name__ == '__main__':

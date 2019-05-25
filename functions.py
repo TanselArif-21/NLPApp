@@ -8,7 +8,7 @@ def return_something():
 	return 200
 
 
-def LDA(site, inurl1, inurl2, increment_string1, increment_string2, total_pages, increment):
+def LDA(site, inurl1, inurl2, increment_string1, increment_string2, total_pages, increment,filename=''):
 	'''
 	Description: This function accepts a dataframe of house prices and a user provided list to predict the sales price for
 	df: a data frame
@@ -25,10 +25,9 @@ def LDA(site, inurl1, inurl2, increment_string1, increment_string2, total_pages,
 	ms.fullscraper()
 	
 	filePath = str(os.path.dirname(os.path.realpath(__file__)))
-	
-	filename = ''
-	for i in range(4):
-		filename = filename + random.choice(string.ascii_letters)
+	if filename=='':
+		for i in range(4):
+			filename = filename + random.choice(string.ascii_letters)
 
 	review_data = ms.all_reviews
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <p>Click this link in a few minutes...</p>
+    <a href="/showresult?filename={{filename}}">Click For Result</a>
+
+</body>
+</html>
+
+<script>
+
+var request = new XMLHttpRequest();
+var params = "url1={{url1}}&url2={{url2}}&increment_string1={{increment_string1}}&increment_string2={{increment_string2}}&total_pages={{total_pages}}&increment={{increment}}&site={{site}}&filename={{filename}}";
+request.open('POST', '/process',true);
+
+request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+request.setRequestHeader("Content-length", params.length);
+request.setRequestHeader("Connection", "close");
+
+request.onload = function() {
+  if (request.status === 200 && request.responseText === 'done') {
+    // long process finished successfully, redirect user
+    alert('LDA Generation Complete!');
+  } else if (request.responseText === 'duplicate'){
+    alert('This LDA has already been run!');
+  } else {
+    // ops, we got an error from the server
+    alert('Something went wrong.');
+  }
+};
+
+request.onerror = function() {
+  // ops, we got an error trying to talk to the server
+  alert('Something went wrong.');
+};
+
+request.send(params);
+</script>

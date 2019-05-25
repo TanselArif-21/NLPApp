@@ -1,13 +1,25 @@
 <!doctype html>
-<title>Simple Linear Regression App</title>
-<h1>House Prices file upload (csv)</h1>
-<p>Please Upload a csv file with House Price data or use the default file. Alternatively,
-download an example file to populate and upload. Then, enter some fields to
-perform a prediction for a house of interest.</p>
+<title>Simple Latent Dirichlet Allocation</title>
+<h1>Provide URL Information</h1>
+<p>Go to the second page of your review page and give the static and dynamic URL information. Example:</p>
+<p><b>URL</b> = https://www.tripadvisor.co.uk/Attraction_Review-g190384-d6755801-Reviews-or10-The_House_of_Dionysus-Paphos_Paphos_District.html
+
+<p><b>URL1</b> = https://www.tripadvisor.co.uk/Attraction_Review-g190384-d6755801-Reviews</p>
+
+<p><b>increment_string1</b> = -or 
+
+<p><b>increment</b> = 10</p>
+
+<p><b>URL2</b> = -The_House_of_Dionysus-Paphos_Paphos_District.html</p>
+
+<p><b>site</b> = tripadvisor</p>
+
 <form action="" method=post enctype=multipart/form-data><p></p>
-	<label>URL1</label><input type="text" name="url1">
-	<label>URL2</label><input type="text" name="url2"><p></p>
-	<label>Total Pages</label><input type="text" name="total_pages">
-	<label>Site</label><input type="text" name="site"><p></p>
+	<label style="margin-right: 90px">URL1</label><input type="text" name="url1"><p></p>
+	<label style="margin-right: 90px">URL2</label><input type="text" name="url2"><p></p>
+	<label style="margin-right: 55px">Total Pages</label><input type="text" name="total_pages"><p></p>
+	<label style="margin-right: 12px">Increment_string1</label><input type="text" name="increment_string1"><p></p>
+	<label style="margin-right: 64px">Increment</label><input type="text" name="increment"><p></p>
+	<label style="margin-right: 104px">Site</label><input type="text" name="site"><p></p>
 	<input type="submit" name="go" value="Go">
 </form>
