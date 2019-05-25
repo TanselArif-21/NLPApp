@@ -12,10 +12,6 @@ app = Flask(__name__)
 # The home route
 @app.route('/', methods=['GET'])
 def home_page():
-
-    LDA('tripadvisor', 'https://www.tripadvisor.co.uk/Attraction_Review-g190384-d6755801-Reviews',
-                     '-The_House_of_Dionysus-Paphos_Paphos_District.html', '-or', '', 1, 10, 'hey')
-
     # Show the index page
     return redirect('/dosomething2')
 
