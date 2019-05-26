@@ -47,9 +47,6 @@ def dosomething2():
         for i in range(4):
             filename = filename + random.choice(string.ascii_letters)
 
-        LDA(site, url1, url2, increment_string1, increment_string2, int(total_pages), int(increment), filename)
-		
-        return 'Yeah'
         return render_template('waiting.html', url1=url1, url2=url2, increment_string1=increment_string1,
                                increment_string2=increment_string2, total_pages=total_pages, increment=increment,
                                site=site, filename=filename)
