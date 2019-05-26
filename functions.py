@@ -29,9 +29,7 @@ def LDA(site, inurl1, inurl2, increment_string1, increment_string2, total_pages,
 		for i in range(4):
 			filename = filename + random.choice(string.ascii_letters)
 
-	review_data = ms.all_reviews
-
-	myTopicModel = TopicModeling.TopicModeling(review_data)
+	myTopicModel = TopicModeling.TopicModeling(ms.all_reviews)
 	myTopicModel.ldaFromReviews()
 	myTopicModel.generate_wordcloud()
 	myTopicModel.saveLDA(os.path.join(filePath,'templates/LDAhtmls',filename + '1' + '.html'))
