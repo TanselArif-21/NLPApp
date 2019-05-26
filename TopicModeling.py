@@ -6,7 +6,6 @@ import gensim
 from wordcloud import WordCloud
 import pyLDAvis
 import pyLDAvis.gensim
-import matplotlib.pyplot as plt
 import warnings
 
 print('Fitering Deprecation Warnings!')

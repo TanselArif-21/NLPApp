@@ -311,8 +311,6 @@ class WebScraper:
 
         # Store the read information into a member variable
         self.all_reviews = df.reset_index().iloc[:,1:]
-        
-        return df.reset_index().iloc[:,1:]
 
 
 

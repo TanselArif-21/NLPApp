@@ -15,8 +15,8 @@ def LDA(site, inurl1, inurl2, increment_string1, increment_string2, total_pages,
 	ls: a list containing the information for a house to predict for
 	'''
 
-	inurl1 = "https://www.tripadvisor.co.uk/Attraction_Review-g190384-d6755801-Reviews"
-	inurl2 = "-The_House_of_Dionysus-Paphos_Paphos_District.html"
+	#inurl1 = "https://www.tripadvisor.co.uk/Attraction_Review-g190384-d6755801-Reviews"
+	#inurl2 = "-The_House_of_Dionysus-Paphos_Paphos_District.html"
 
 	ms = WebScraper.WebScraper(site=site,url1=inurl1,
 						  url2=inurl2,increment_string1=increment_string1,increment_string2=increment_string2,
@@ -36,4 +36,4 @@ def LDA(site, inurl1, inurl2, increment_string1, increment_string2, total_pages,
 	myTopicModel.saveWordcloud(os.path.join(filePath,'static',filename + '2' + '.png'))
 
 	# # Return the predicted Sale Price
-	return filename
+	return None
